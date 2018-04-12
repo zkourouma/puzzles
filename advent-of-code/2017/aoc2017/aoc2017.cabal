@@ -1,0 +1,60 @@
+-- This file has been generated from package.yaml by hpack version 0.20.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 6f56c28e0293b7ca321440923a74d5d611edc8c80199286cb34620a5eb8fc8fc
+
+name:           aoc2017
+version:        0.0.1.0
+synopsis:       Advent of Code solutions for 2017 (adventofcode.com/2017)
+description:    Please see the README on Github at <https://github.com/zkourouma/aoc2017#readme>
+category:       Web
+homepage:       https://github.com/zkourouma/aoc2017#readme
+author:         Zack Kourouma
+maintainer:     zack@kourouma.me
+copyright:      2017 Zack Kourouma
+license:        BSD3
+build-type:     Simple
+cabal-version:  >= 1.10
+
+extra-source-files:
+    README.md
+
+data-files:
+    input/day1-1
+
+source-repository head
+  type: git
+  location: https://github.com/zkourouma/aoc2017
+
+library
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wwarn
+  build-depends:
+      base >=4.7 && <5
+  other-modules:
+      Paths_aoc2017
+  default-language: Haskell2010
+
+executable day-1
+  main-is: Main.hs
+  hs-source-dirs:
+      day1
+  ghc-options: -Wall -Wwarn -threaded -rtsopts -with-rtsopts=-N -main-is Main
+  build-depends:
+      aoc2017
+    , base >=4.7 && <5
+  other-modules:
+      Paths_aoc2017
+  default-language: Haskell2010
+
+test-suite day-1-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  ghc-options: -Wall -Wwarn
+  build-depends:
+      base >=4.7 && <5
+  other-modules:
+      Paths_aoc2017
+  default-language: Haskell2010

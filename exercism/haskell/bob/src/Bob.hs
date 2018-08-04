@@ -2,9 +2,8 @@ module Bob
   ( responseFor
   ) where
 
-import           Data.Char        as C
-import           Data.Text        as T
-import           Text.Regex.Posix
+import           Data.Char as C
+import           Data.Text as T
 
 responseFor :: String -> String
 responseFor xs = responseFor' . T.strip $ T.pack xs
@@ -12,9 +11,15 @@ responseFor xs = responseFor' . T.strip $ T.pack xs
 responseFor' :: Text -> String
 responseFor' ys
   | ys == T.pack "" = "Fine. Be that way!"
-  | ys == T.map C.toUpper ys && isInt (T.unpack ys) = "Whoa, chill out!"
+  | shouting ys = "Whoa, chill out!"
   | T.last ys == '?' = "Sure."
   | otherwise = "Whatever."
 
-isInt :: String -> Bool
-isInt xs = xs =~ "[A-Za-z]" :: Bool
+shouting :: Text -> Bool
+shouting t
+  | T.last t == '!' = shouting' t
+  | T.all (not . C.isAlpha) t = False
+  | otherwise = shouting' t
+
+shouting' :: Text -> Bool
+shouting' = T.all (not . C.isLower)

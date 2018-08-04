@@ -11,6 +11,7 @@ responseFor xs = responseFor' . T.strip $ T.pack xs
 responseFor' :: Text -> String
 responseFor' ys
   | ys == T.pack "" = "Fine. Be that way!"
+  | shouting ys && T.last ys == '?' = "Calm down, I know what I'm doing!"
   | shouting ys = "Whoa, chill out!"
   | T.last ys == '?' = "Sure."
   | otherwise = "Whatever."

@@ -2,8 +2,11 @@ module Pangram
   ( isPangram
   ) where
 
+import           Data.Char as C
+
 isPangram :: String -> Bool
 isPangram text = null left
   where
-    includes (upper, lower) = upper `elem` text || lower `elem` text
-    left = dropWhile includes $ zip ['A' .. 'Z'] ['a' .. 'z']
+    lowered = map C.toLower text
+    includes = (`elem` lowered)
+    left = dropWhile includes ['a' .. 'z']

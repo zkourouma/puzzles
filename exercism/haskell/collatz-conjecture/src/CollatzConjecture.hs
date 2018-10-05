@@ -7,13 +7,9 @@ import           Data.List
 collatz :: Integer -> Maybe Integer
 collatz n
   | n < 1 = Nothing
-  | otherwise =
-    Just $
-    genericLength $
-    takeWhile (/= 1) $
-    iterate
-      (\n ->
-         if even n
-           then n `div` 2
-           else 3 * n + 1)
-      n
+  | otherwise = Just . genericLength . takeWhile (/= 1) $ iterate step n
+
+step :: Integer -> Integer
+step n
+  | even n = n `div` 2
+  | otherwise = 3 * n + 1

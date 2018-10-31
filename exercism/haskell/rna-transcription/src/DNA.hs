@@ -4,7 +4,7 @@ module DNA
 
 import           Data.Map.Lazy (fromList, (!?))
 
-dna = fromList [('A', 'U'), ('T', 'A'), ('G', 'C'), ('C', 'G')]
+dnaRnaLookup = fromList [('A', 'U'), ('T', 'A'), ('G', 'C'), ('C', 'G')]
 
 toRNA :: String -> Maybe String
-toRNA = mapM (dna !?)
+toRNA = mapM (dnaRnaLookup !?)

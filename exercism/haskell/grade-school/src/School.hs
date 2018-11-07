@@ -31,4 +31,4 @@ grade' gradeNum = find byGrade
     byGrade g = fst g == gradeNum
 
 sorted :: School -> [(Int, [String])]
-sorted school = sort $ map (\(g, names) -> (g, sort names)) school
+sorted = sort

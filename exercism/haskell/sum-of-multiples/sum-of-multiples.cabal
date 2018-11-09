@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ef2fa027fde65bb548691c34fcdd818fac9c050b6e539d7c865111700c626aa2
+-- hash: f285a6f0c40c27e2b69d3e13b0baf6e895c028923720bd5d9d77e8717fbc143e
 
 name:           sum-of-multiples
 version:        1.4.1.8
@@ -19,6 +19,7 @@ library
       src
   build-depends:
       base
+    , containers
   default-language: Haskell2010
 
 test-suite test

@@ -2,9 +2,9 @@ module SumOfMultiples
   ( sumOfMultiples
   ) where
 
-import           Data.Set (fromList, toList)
+import           Data.Set (fromDistinctAscList, unions)
 
 sumOfMultiples :: [Integer] -> Integer -> Integer
 sumOfMultiples factors limit =
-  let multiples f = takeWhile (< limit) (map (* f) [0 ..])
-   in sum $ (toList . fromList . concat) $ map multiples factors
+  let multiples f = fromDistinctAscList $ takeWhile (< limit) (map (* f) [0 ..])
+   in sum $ unions $ map multiples factors

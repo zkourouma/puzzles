@@ -1,0 +1,35 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: e3a83a9bdc7ba035a33fa97045dd9d9d2e786b32f3244f87c71bc90a1657710d
+
+name:           difference-of-squares
+version:        1.2.0.6
+build-type:     Simple
+
+library
+  exposed-modules:
+      Squares
+  other-modules:
+      Paths_difference_of_squares
+  hs-source-dirs:
+      src
+  build-depends:
+      base
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Tests.hs
+  other-modules:
+      Paths_difference_of_squares
+  hs-source-dirs:
+      test
+  build-depends:
+      base
+    , difference-of-squares
+    , hspec
+  default-language: Haskell2010

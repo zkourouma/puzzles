@@ -9,7 +9,7 @@ fn isbn_validator(potential: &str) -> bool {
             let digit_opt = c.to_digit(10);
             let digit = match digit_opt {
                 Some(digit) => digit,
-                None        => {
+                None => {
                     println!("Not a number");
                     continue;
                 }
@@ -20,9 +20,8 @@ fn isbn_validator(potential: &str) -> bool {
             total += 10 * counter;
             counter -= 1;
         }
-
     }
-    return total % 11 == 0 && total != 0
+    return total % 11 == 0 && total != 0;
 }
 
 fn main() {
@@ -31,7 +30,10 @@ fn main() {
         let mut input = String::new();
 
         println!("Enter a potential ISBN");
-        reader.read_line(&mut input).ok().expect("Failed to read line");
+        reader
+            .read_line(&mut input)
+            .ok()
+            .expect("Failed to read line");
 
         let is_valid = isbn_validator(input.trim());
         println!("Valid ISBN: {}", is_valid);

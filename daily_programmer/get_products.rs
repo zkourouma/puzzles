@@ -25,10 +25,11 @@
     //return product_results
 //}
 
-
 fn get_products(nums: &[usize]) -> Vec<usize> {
     let mut result = Vec::new();
-    if nums.len() < 2 { return result };
+    if nums.len() < 2 {
+        return result;
+    };
     for _ in 0..nums.len() {
         result.push(1);
     }
@@ -44,7 +45,6 @@ fn get_products(nums: &[usize]) -> Vec<usize> {
     }
     result
 }
-
 
 #[test]
 fn example_set() {

@@ -1,19 +1,21 @@
 fn factors(x: usize) -> Vec<usize> {
     let mut facts = Vec::new();
     if x == 0 {
-        return facts
+        return facts;
     }
 
-    for y in 1..x+1 {
-        if x % y == 0 { facts.push(y) };
+    for y in 1..x + 1 {
+        if x % y == 0 {
+            facts.push(y)
+        };
     }
     facts.sort();
-    return facts
+    return facts;
 }
 
 fn primes(x: usize) -> Vec<usize> {
     if x == 0 {
-        return Vec::new()
+        return Vec::new();
     }
     let mut prime_nums = vec![2];
     let mut i = 3;
@@ -22,7 +24,7 @@ fn primes(x: usize) -> Vec<usize> {
         for y in prime_nums.clone().into_iter() {
             if i == y || i % y == 0 {
                 is_prime = false;
-                break
+                break;
             }
         }
         if is_prime {
@@ -30,13 +32,13 @@ fn primes(x: usize) -> Vec<usize> {
         }
         i += 2;
     }
-    return prime_nums
+    return prime_nums;
 }
 
 #[test]
 fn factors_ten_in_order() {
-     let x = factors(10);
-     assert_eq!(x, vec![1, 2, 5, 10]);
+    let x = factors(10);
+    assert_eq!(x, vec![1, 2, 5, 10]);
 }
 
 #[test]
@@ -47,7 +49,7 @@ fn factors_zero_as_zero() {
 
 #[test]
 fn primes_finds_zero() {
-    let x =  primes(0);
+    let x = primes(0);
     assert_eq!(x, Vec::new());
 }
 

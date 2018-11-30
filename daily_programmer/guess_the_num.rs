@@ -1,10 +1,10 @@
 // extern crate rand;
 
+use std::cmp::Ordering::{Equal, Greater, Less};
 use std::io;
-use std::cmp::Ordering::{Less, Greater, Equal};
 // use rand::Rand;
 
-fn main(){
+fn main() {
     println!("Guess a number");
     // let secret_number = (rand::random::<usize>() % 100us) + 1us;
     // let mut rng = rand::thread_rng();
@@ -16,18 +16,21 @@ fn main(){
     let mut guesses: usize = 0;
     let reader = io::stdin();
 
-    loop{
+    loop {
         if guesses == max_tries {
             println!("You couldn't win with {} guesses", max_tries);
             break;
         }
         println!("please enter guess (guess #: {}):", guesses + 1);
         let mut input = String::new();
-        reader.read_line(&mut input).ok().expect("Failed to read line");
+        reader
+            .read_line(&mut input)
+            .ok()
+            .expect("Failed to read line");
         let input_num: Option<isize> = input.trim().parse::<isize>().ok();
         let num = match input_num {
             Some(num) => num,
-            None      => {
+            None => {
                 println!("please input a number");
                 continue;
             }
@@ -37,13 +40,13 @@ fn main(){
         guesses += 1;
 
         match num.cmp(&secret_number) {
-            Less    => println!("too small"),
+            Less => println!("too small"),
             Greater => println!("too big"),
-            Equal   => {
+            Equal => {
                 println!("you win!");
                 println!("it only took {} guesses", guesses);
                 break;
-            },
+            }
         }
     }
 }

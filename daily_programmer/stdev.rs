@@ -7,7 +7,11 @@ fn find_mean(population: &Vec<f32>) -> f32 {
 }
 
 fn get_diff_mean_square(population: &Vec<f32>, mean: f32) -> Vec<f32> {
-    return population.clone().iter().map(|&x| (mean - x).powi(2)).collect();
+    return population
+        .clone()
+        .iter()
+        .map(|&x| (mean - x).powi(2))
+        .collect();
 }
 
 fn get_sum(diff_squares: &Vec<f32>) -> f32 {
@@ -44,11 +48,13 @@ fn parse_stdin(input: &str) -> Vec<f32> {
 
 fn main() {
     loop {
-
         let reader = io::stdin();
         let mut input = String::new();
         println!("Enter the numbers seperated with spaces");
-        reader.read_line(&mut input).ok().expect("Failed to read line");
+        reader
+            .read_line(&mut input)
+            .ok()
+            .expect("Failed to read line");
 
         let population = parse_stdin(input.trim());
         let mean = find_mean(&population);
@@ -57,7 +63,6 @@ fn main() {
         println!("mean: {}", mean);
         println!("variance: {}", variance);
         println!("standard deviation: {}", st_dev);
-
     }
 }
 

@@ -1,0 +1,35 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 8606f24fa341f5df6d67652e9d6b31371ce169e3d1683ca61ab283fbab0fe5e1
+
+name:           grains
+version:        1.2.0.5
+build-type:     Simple
+
+library
+  exposed-modules:
+      Grains
+  other-modules:
+      Paths_grains
+  hs-source-dirs:
+      src
+  build-depends:
+      base
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Tests.hs
+  other-modules:
+      Paths_grains
+  hs-source-dirs:
+      test
+  build-depends:
+      base
+    , grains
+    , hspec
+  default-language: Haskell2010

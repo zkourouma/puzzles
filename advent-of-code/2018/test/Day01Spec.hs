@@ -1,10 +1,9 @@
-module Spec where
+module Day01Spec
+  ( spec
+  ) where
 
-import           Main       (getData, part1)
+import           Day01      (getData, part1, part2)
 import           Test.Hspec
-
-main :: IO ()
-main = hspec spec
 
 spec :: Spec
 spec =

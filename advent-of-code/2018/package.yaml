@@ -15,7 +15,18 @@ dependencies:
   - containers
   - text >=1.2.2.0
 
-ghc-options: [-Wall, -Wwarn]
+ghc-options:
+  - -Wall
+  - -Werror
+  - -Wno-type-defaults
+
+default-extensions:
+  - OverloadedStrings
+  - NamedFieldPuns
+  - MultiWayIf
+  - TupleSections
+  - DeriveGeneric
+  - RankNTypes
 
 library:
   source-dirs: src
@@ -30,12 +41,15 @@ internal-libraries:
     dependencies:
       - AoC2018
       - hspec
+  l-day02:
+    <<: *base-lib
+    source-dirs: day02
 
 data-files:
   - inputs/*
 
 executables:
-  day-01: &base-exe
+  day01: &base-exe
     main: Main.hs
     source-dirs: day01
     ghc-options: [-threaded, -rtsopts, -with-rtsopts=-N, -O2]
@@ -43,14 +57,16 @@ executables:
       - Paths_AoC2018
     dependencies:
       - AoC2018
-  # day-02:
-  #   <<: *base-exe
-  #   source-dirs: day02
+  day02:
+    <<: *base-exe
+    source-dirs: day02
 
 tests:
-  day-01-test: &base-test
-    source-dirs: day01
-    main: Spec.hs
+  all-tests:
+    defaults: hspec/hspec@master
     dependencies:
       - hspec
-      - l-day01
+      - name: l-day01
+        mixin: (Main as Day01)
+      - name: l-day02
+        mixin: (Main as Day02)

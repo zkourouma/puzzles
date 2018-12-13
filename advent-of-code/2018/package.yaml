@@ -44,6 +44,9 @@ internal-libraries:
   l-day02:
     <<: *base-lib
     source-dirs: day02
+  l-day03:
+    <<: *base-lib
+    source-dirs: day03
 
 data-files:
   - inputs/*
@@ -60,6 +63,9 @@ executables:
   day02:
     <<: *base-exe
     source-dirs: day02
+  day03:
+    <<: *base-exe
+    source-dirs: day03
 
 tests:
   all-tests:

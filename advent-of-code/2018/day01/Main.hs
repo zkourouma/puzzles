@@ -19,21 +19,21 @@ main = do
   print $ part1 inputs
   print $ part2 inputs
 
-getData :: IO [Integer]
+getData :: IO [Int]
 getData = map parser . lines <$> (readFile =<< file)
 
-parser :: String -> Integer
+parser :: String -> Int
 parser ('+':num) = read num
 parser ('-':num) = (-1) * read num
 parser _         = 0
 
-part1 :: [Integer] -> Integer
+part1 :: [Int] -> Int
 part1 = sum
 
-part2 :: [Integer] -> Integer
+part2 :: [Int] -> Int
 part2 d = part2' (cycle d) 0 (Set.singleton 0)
 
-part2' :: [Integer] -> Integer -> Set.Set Integer -> Integer
+part2' :: [Int] -> Int -> Set.Set Int -> Int
 part2' [] y _ = y
 part2' (x:xs) y seen =
   let y' = x + y

@@ -4,7 +4,7 @@ cabal-version: 2.0
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 1346d3a55ff00b6eca1a8a3a548bf923ecc8f715cc847537ce048b730c85bfc5
+-- hash: 23e8134135ef8b57684894c9a62f68a95280f962e73ba051383a8f9f10031e47
 
 name:           AoC2018
 version:        0.1.0.0
@@ -74,6 +74,23 @@ library l-day02
     , text >=1.2.2.0
   default-language: Haskell2010
 
+library l-day03
+  exposed-modules:
+      Main
+  other-modules:
+      Paths_AoC2018
+  hs-source-dirs:
+      day03
+  default-extensions: OverloadedStrings NamedFieldPuns MultiWayIf TupleSections DeriveGeneric RankNTypes
+  ghc-options: -Wall -Werror -Wno-type-defaults
+  build-depends:
+      AoC2018
+    , base >=4.7 && <5
+    , containers
+    , hspec
+    , text >=1.2.2.0
+  default-language: Haskell2010
+
 executable day01
   main-is: Main.hs
   other-modules:
@@ -95,6 +112,21 @@ executable day02
       Paths_AoC2018
   hs-source-dirs:
       day02
+  default-extensions: OverloadedStrings NamedFieldPuns MultiWayIf TupleSections DeriveGeneric RankNTypes
+  ghc-options: -Wall -Werror -Wno-type-defaults -threaded -rtsopts -with-rtsopts=-N -O2
+  build-depends:
+      AoC2018
+    , base >=4.7 && <5
+    , containers
+    , text >=1.2.2.0
+  default-language: Haskell2010
+
+executable day03
+  main-is: Main.hs
+  other-modules:
+      Paths_AoC2018
+  hs-source-dirs:
+      day03
   default-extensions: OverloadedStrings NamedFieldPuns MultiWayIf TupleSections DeriveGeneric RankNTypes
   ghc-options: -Wall -Werror -Wno-type-defaults -threaded -rtsopts -with-rtsopts=-N -O2
   build-depends:

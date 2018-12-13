@@ -9,6 +9,10 @@ spec :: Spec
 spec =
   before getData $ do
     describe "part1" $
-      xit "computes the frequency" $ \d -> part1 d `shouldBe` 582
-    describe "part2" $
-      xit "finds the repeated frequency" $ \d -> part2 d `shouldBe` 488
+      it "finds the checksum of 2 and 3" $ \d -> part1 d `shouldBe` 9633
+    describe "part2" $ do
+      it "passes the README test" $ \_ ->
+        part2 ["abcde", "fghij", "klmno", "pqrst", "fguij", "azcye", "wvxyz"] `shouldBe`
+        "fgij"
+      it "finds the correct intersection" $ \d ->
+        part2 d `shouldBe` "lujnogabetpmsydyfcovzixaw"

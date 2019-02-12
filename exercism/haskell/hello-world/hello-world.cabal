@@ -1,11 +1,14 @@
--- This file has been generated from package.yaml by hpack version 0.15.0.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
+--
+-- hash: dfa98c8f454efa164731b0d4e000e8425c272ec43fb40bce8fdcde20e3b45cb4
 
 name:           hello-world
 version:        0.0.0
 build-type:     Simple
-cabal-version:  >= 1.10
 
 library
   hs-source-dirs:
@@ -21,6 +24,8 @@ library
 test-suite test
   type: exitcode-stdio-1.0
   main-is: Tests.hs
+  other-modules:
+      Paths_hello_world
   hs-source-dirs:
       test
   build-depends:

@@ -1,7 +1,8 @@
 module SpaceAge
   ( Planet(..)
   , ageOn
-  ) where
+  )
+where
 
 data Planet
   = Mercury

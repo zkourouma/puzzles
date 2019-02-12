@@ -1,26 +1,26 @@
 module Bob
   ( responseFor
-  ) where
+  )
+where
 
-import           Data.Char as C
-import           Data.Text as T
+import           Data.Char                     as C
+import           Data.Text                     as T
 
 responseFor :: String -> String
 responseFor xs = responseFor' . T.strip $ T.pack xs
 
 responseFor' :: Text -> String
 responseFor' ys
-  | ys == T.pack "" = "Fine. Be that way!"
+  | ys == T.pack ""                 = "Fine. Be that way!"
   | shouting ys && T.last ys == '?' = "Calm down, I know what I'm doing!"
-  | shouting ys = "Whoa, chill out!"
-  | T.last ys == '?' = "Sure."
-  | otherwise = "Whatever."
+  | shouting ys                     = "Whoa, chill out!"
+  | T.last ys == '?'                = "Sure."
+  | otherwise                       = "Whatever."
 
 shouting :: Text -> Bool
-shouting t
-  | T.last t == '!' = shouting' t
-  | T.all (not . C.isAlpha) t = False
-  | otherwise = shouting' t
+shouting t | T.last t == '!'           = shouting' t
+           | T.all (not . C.isAlpha) t = False
+           | otherwise                 = shouting' t
 
 shouting' :: Text -> Bool
 shouting' = T.all (not . C.isLower)

@@ -1,6 +1,7 @@
 module LeapYear
   ( isLeapYear
-  ) where
+  )
+where
 
 isLeapYear :: Integer -> Bool
 isLeapYear year =

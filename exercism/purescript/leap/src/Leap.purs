@@ -1,8 +1,9 @@
 module Leap where
 
-import Data.EuclideanRing
-import Data.Eq
-import Data.HeytingAlgebra
+import Prelude
 
 isLeapYear :: Int -> Boolean
-isLeapYear n = n `mod` 4 == 0 && (n `mod` 100 /= 0 || n `mod` 400 == 0) 
+isLeapYear n = n `isModulo` 4 && (n `mod` 100 /= 0 || n `isModulo` 400) 
+
+isModulo :: Int -> Int -> Boolean
+isModulo x y = mod x y == 0

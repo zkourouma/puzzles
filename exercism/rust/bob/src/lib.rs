@@ -3,29 +3,34 @@ fn is_question(msg: &str) -> bool {
 }
 
 fn has_lowercase(msg: &str) -> bool {
-    msg.chars().any(|c| c.is_lowercase())
+    msg.chars().any(char::is_lowercase)
 }
 
 fn has_uppercase(msg: &str) -> bool {
-    msg.chars().any(|c| c.is_uppercase())
+    msg.chars().any(char::is_uppercase)
 }
 
 fn is_nonsense(msg: &str) -> bool {
-    !msg.chars().any(|c| c.is_alphanumeric())
+    !msg.chars().any(char::is_alphanumeric)
+}
+
+fn is_yelled(msg: &str) -> bool {
+    !has_lowercase(msg) && has_uppercase(msg)
 }
 
 pub fn reply(message: &str) -> &str {
     let msg = message.trim();
+    let mut ret = "Whatever.";
 
-    if (!has_lowercase(msg)) && has_uppercase(msg) && is_question(msg) {
-        return "Calm down, I know what I'm doing!";
+    if (is_yelled(msg)) && is_question(msg) {
+        ret = "Calm down, I know what I'm doing!";
     } else if is_question(msg) {
-        return "Sure.";
-    } else if (!has_lowercase(msg)) && has_uppercase(msg) {
-        return "Whoa, chill out!";
+        ret = "Sure.";
+    } else if is_yelled(msg) {
+        ret = "Whoa, chill out!";
     } else if is_nonsense(msg) {
-        return "Fine. Be that way!";
+        ret = "Fine. Be that way!";
     }
 
-    return "Whatever.";
+    ret
 }

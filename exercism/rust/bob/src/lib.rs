@@ -20,17 +20,16 @@ fn is_yelled(msg: &str) -> bool {
 
 pub fn reply(message: &str) -> &str {
     let msg = message.trim();
-    let mut ret = "Whatever.";
 
     if (is_yelled(msg)) && is_question(msg) {
-        ret = "Calm down, I know what I'm doing!";
+        "Calm down, I know what I'm doing!"
     } else if is_question(msg) {
-        ret = "Sure.";
+        "Sure."
     } else if is_yelled(msg) {
-        ret = "Whoa, chill out!";
+        "Whoa, chill out!"
     } else if is_nonsense(msg) {
-        ret = "Fine. Be that way!";
+        "Fine. Be that way!"
+    } else {
+        "Whatever."
     }
-
-    ret
 }

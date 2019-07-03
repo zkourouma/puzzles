@@ -1,48 +1,29 @@
-#[macro_use]
-extern crate lazy_static;
-extern crate regex;
-use regex::Regex;
-
 fn is_question(msg: &str) -> bool {
-    lazy_static! {
-        static ref RE: Regex = Regex::new(r"^[\W\w]*\?\s*$").unwrap();
-    }
-
-    RE.is_match(msg)
+    msg.ends_with('?')
 }
 
 fn has_lowercase(msg: &str) -> bool {
-    lazy_static! {
-        static ref RE: Regex = Regex::new(r"[a-z]+").unwrap();
-    }
-
-    RE.is_match(msg)
+    msg.chars().any(|c| c.is_lowercase())
 }
 
 fn has_uppercase(msg: &str) -> bool {
-    lazy_static! {
-        static ref RE: Regex = Regex::new(r"[A-Z]+").unwrap();
-    }
-
-    RE.is_match(msg)
+    msg.chars().any(|c| c.is_uppercase())
 }
 
 fn is_nonsense(msg: &str) -> bool {
-    lazy_static! {
-        static ref RE: Regex = Regex::new(r"^\W*$").unwrap();
-    }
-
-    RE.is_match(msg)
+    !msg.chars().any(|c| c.is_alphanumeric())
 }
 
 pub fn reply(message: &str) -> &str {
-    if (!has_lowercase(message)) && has_uppercase(message) && is_question(message) {
+    let msg = message.trim();
+
+    if (!has_lowercase(msg)) && has_uppercase(msg) && is_question(msg) {
         return "Calm down, I know what I'm doing!";
-    } else if is_question(message) {
+    } else if is_question(msg) {
         return "Sure.";
-    } else if (!has_lowercase(message)) && has_uppercase(message) {
+    } else if (!has_lowercase(msg)) && has_uppercase(msg) {
         return "Whoa, chill out!";
-    } else if is_nonsense(message) {
+    } else if is_nonsense(msg) {
         return "Fine. Be that way!";
     }
 

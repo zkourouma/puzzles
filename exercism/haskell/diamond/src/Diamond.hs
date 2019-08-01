@@ -18,26 +18,17 @@ forgeDiamond :: Maybe Int -> Maybe [String]
 forgeDiamond Nothing  = Nothing
 forgeDiamond (Just 0) = Just ["A"]
 forgeDiamond (Just idx) =
-  let maxWidth       = idx + 1
-      indexedLetters = take maxWidth $ zip ([0] ++ [1, 3 ..]) alphabet
-      strs           = map (makeLine maxWidth) indexedLetters
-      strs'          = reverse $ take idx strs
-  in  Just $ strs ++ strs'
+  let width = idx + 1
+      half  = map (makeLayer width) $ take width $ zip3 [1 ..]
+                                                        ([0] ++ [1, 3 ..])
+                                                        alphabet
+  in  Just $ half ++ (reverse $ take idx half)
 
 
-makeLine :: Int -> (Int, Char) -> String
-makeLine maxWidth (0, c) = marginSpace ++ [c] ++ marginSpace
+makeLayer :: Int -> (Int, Int, Char) -> String
+makeLayer width (idx, 0, c) = margins ++ [c] ++ margins
+  where margins = take (width - idx) $ repeat ' '
+makeLayer width (idx, width', c) = margins ++ [c] ++ middle ++ [c] ++ margins
  where
-  margin      = (getMargin (maxWidth + 1))
-  marginSpace = take margin $ repeat ' '
-
-makeLine maxWidth (filler, c) =
-  marginSpace ++ [c] ++ middle ++ [c] ++ marginSpace
- where
-  middle      = take filler $ repeat ' '
-  margin      = getMargin (maxWidth - filler + 1)
-  marginSpace = take margin $ repeat ' '
-
-getMargin :: Integral a => a -> a
-getMargin x | even x    = x `quot` 2
-            | otherwise = (x + 1) `quot` 2
+  middle  = take width' $ repeat ' '
+  margins = take (width - idx) $ repeat ' '
